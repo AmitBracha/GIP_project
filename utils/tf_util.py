@@ -699,6 +699,10 @@ def get_edge_feature(point_cloud, nn_idx, k=20):
     point_cloud_central_2 = tf.multiply(point_cloud_central, point_cloud_central)
     point_cloud_central_roll = tf.roll(point_cloud_central, shift=1, axis=-1)
     point_cloud_central_2_roll = tf.multiply(point_cloud_central, point_cloud_central_roll)
+    point_nei_minus_self = point_cloud_neighbors - point_cloud_central
+    point_nei_minus_self_2 = tf.multiply(point_nei_minus_self, point_nei_minus_self)
+    point_nei_minus_self_roll = tf.roll(point_nei_minus_self, shift=1, axis=-1)
+    point_nei_minus_self_2_roll = tf.multiply(point_nei_minus_self, point_nei_minus_self_roll)
     edge_feature = tf.concat([point_cloud_central_2, point_cloud_central_2_roll, point_cloud_central,
-                              point_cloud_neighbors - point_cloud_central], axis=-1)
+                              point_nei_minus_self, point_nei_minus_self_2, point_nei_minus_self_2_roll], axis=-1)
     return edge_feature
