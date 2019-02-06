@@ -746,6 +746,42 @@ def new2_get_edge_feature(point_cloud, nn_idx, k=20):
                               point_nei_minus_self, point_nei_minus_self_2, point_nei_minus_self_2_roll], axis=-1)
     return edge_feature
 
+def new3_get_edge_feature(point_cloud, nn_idx, k=20):
+    """Construct edge feature for each point
+        Args:
+          point_cloud: (batch_size, num_points, 1, num_dims)
+          nn_idx: (batch_size, num_points, k)
+          k: int
+
+        Returns:
+          edge features: (batch_size, num_points, k, num_dims)
+        """
+    og_batch_size = point_cloud.get_shape().as_list()[0]
+    point_cloud = tf.squeeze(point_cloud)
+    if og_batch_size == 1:
+        point_cloud = tf.expand_dims(point_cloud, 0)
+
+    point_cloud_central = point_cloud
+
+    point_cloud_shape = point_cloud.get_shape()
+    batch_size = point_cloud_shape[0].value
+    num_points = point_cloud_shape[1].value
+    num_dims = point_cloud_shape[2].value
+
+    idx_ = tf.range(batch_size) * num_points
+    idx_ = tf.reshape(idx_, [batch_size, 1, 1])
+
+    point_cloud_flat = tf.reshape(point_cloud, [-1, num_dims])
+    point_cloud_neighbors = tf.gather(point_cloud_flat, nn_idx + idx_)
+    point_cloud_central = tf.expand_dims(point_cloud_central, axis=-2)
+
+    point_cloud_central = tf.tile(point_cloud_central, [1, 1, k, 1])
+    point_nei_minus_self = point_cloud_neighbors - point_cloud_central
+    point_nei_minus_self_2 = tf.multiply(point_nei_minus_self, point_nei_minus_self)
+    point_nei_minus_self_roll = tf.roll(point_nei_minus_self, shift=1, axis=-1)
+    point_nei_minus_self_2_roll = tf.multiply(point_nei_minus_self, point_nei_minus_self_roll)
+    edge_feature = tf.concat([point_cloud_central, point_nei_minus_self, point_nei_minus_self_2, point_nei_minus_self_2_roll], axis=-1)
+    return edge_feature
 
 def get_edge_feature(point_cloud, nn_idx, k=20):
     """Construct edge feature for each point
