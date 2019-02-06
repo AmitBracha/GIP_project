@@ -26,7 +26,7 @@ def get_model(point_cloud, is_training, bn_decay=None):
 
   adj_matrix = tf_util.pairwise_distance(point_cloud)
   nn_idx = tf_util.knn(adj_matrix, k=k)
-  edge_feature = tf_util.get_edge_feature(point_cloud, nn_idx=nn_idx, k=k)
+  edge_feature = tf_util.new_get_edge_feature(point_cloud, nn_idx=nn_idx, k=k)
 
   with tf.variable_scope('transform_net1') as sc:
     transform = input_transform_net(edge_feature, is_training, bn_decay, K=3)
