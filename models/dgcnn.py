@@ -44,9 +44,7 @@ def get_model(point_cloud, is_training, bn_decay=None):
     net = tf.reduce_max(net, axis=-2, keep_dims=True)
     net1 = net
 
-    adj_matrix = tf_util.pairwise_distance(net)
-    nn_idx = tf_util.knn(adj_matrix, k=k)
-    edge_feature = tf_util.get_edge_feature(net, nn_idx=nn_idx, k=k)
+    edge_feature = tf_util.get_momentum_feature(net, k=k)
 
     net = tf_util.conv2d(edge_feature, 64, [1, 1],
                          padding='VALID', stride=[1, 1],
@@ -55,9 +53,7 @@ def get_model(point_cloud, is_training, bn_decay=None):
     net = tf.reduce_max(net, axis=-2, keep_dims=True)
     net2 = net
 
-    adj_matrix = tf_util.pairwise_distance(net)
-    nn_idx = tf_util.knn(adj_matrix, k=k)
-    edge_feature = tf_util.get_edge_feature(net, nn_idx=nn_idx, k=k)
+    edge_feature = tf_util.get_momentum_feature(net, k=k)
 
     net = tf_util.conv2d(edge_feature, 64, [1, 1],
                          padding='VALID', stride=[1, 1],
