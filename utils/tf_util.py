@@ -850,7 +850,7 @@ def get_momentum_feature(point_cloud, k=20):
     tmp_point_momentum = tf.multiply(point_cloud_central, rolled_point_cloud)
     point_cloud_momentum = tmp_point_momentum
     rolled_point_cloud = tf.roll(rolled_point_cloud, shift=1, axis=-1)
-    for i in range(k):
+    for i in range(k-1):
         tmp_point_momentum = tf.multiply(point_cloud_central, rolled_point_cloud)
         point_cloud_momentum = tf.concat([point_cloud_momentum, tmp_point_momentum], axis=-2)
         rolled_point_cloud = tf.roll(rolled_point_cloud, shift=1, axis=-1)
