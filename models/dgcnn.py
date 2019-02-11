@@ -32,7 +32,7 @@ def get_model(point_cloud, is_training, bn_decay=None):
 
     adj_matrix = tf_util.pairwise_distance(point_cloud)
     nn_idx = tf_util.knn(adj_matrix, k=k)
-    edge_feature = tf_util.get_edge_feature(point_cloud, nn_idx=nn_idx, k=k)
+    edge_feature = tf_util.new_get_edge_feature(point_cloud, nn_idx=nn_idx, k=k)
 
     net = tf_util.conv2d(edge_feature, 128, [1, 1],
                          padding='VALID', stride=[1, 1],
