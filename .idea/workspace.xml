@@ -4,7 +4,6 @@
     <list default="true" id="841cd442-d4af-4535-b9f1-6ef7c9066796" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/dgcnn.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/dgcnn.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/tf_util.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/tf_util.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -14,11 +13,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/train.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-511">
-              <caret line="106" column="42" selection-start-line="106" selection-start-column="37" selection-end-line="106" selection-end-column="42" />
+            <state relative-caret-position="516">
+              <caret line="41" column="17" selection-start-line="41" selection-start-column="8" selection-end-line="41" selection-end-column="17" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -41,8 +40,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/utils/tf_util.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="137">
-              <caret line="850" column="22" selection-start-line="850" selection-start-column="4" selection-end-line="850" selection-end-column="22" />
+            <state relative-caret-position="51">
+              <caret line="850" column="26" selection-start-line="850" selection-start-column="4" selection-end-line="850" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -59,11 +58,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models/dgcnn.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="972">
-              <caret line="70" column="50" selection-start-line="70" selection-start-column="50" selection-end-line="70" selection-end-column="50" />
+            <state relative-caret-position="224">
+              <caret line="34" column="27" selection-start-line="34" selection-start-column="4" selection-end-line="34" selection-end-column="27" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -115,8 +114,10 @@
       <find>get_m</find>
       <find>MODEL_PATH</find>
       <find>end_points</find>
-      <find>get_edge_feature</find>
       <find>transform</find>
+      <find>get_edge_feature</find>
+      <find>get_feature_double</find>
+      <find>MODEL_FILE</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -201,7 +202,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1548935819161</updated>
-      <workItem from="1548935820865" duration="33272000" />
+      <workItem from="1548935820865" duration="35604000" />
     </task>
     <task id="LOCAL-00001" summary="a">
       <created>1549442001960</created>
@@ -287,18 +288,32 @@
       <option name="project" value="LOCAL" />
       <updated>1549899703542</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="model that simply double the data of the points without any other operation">
+      <created>1549964342664</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1549964342664</updated>
+    </task>
+    <task id="LOCAL-00014" summary="model that simply add zeroes instead of other features">
+      <created>1549964980413</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1549964980413</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="33272000" />
+    <option name="totallyTimeSpent" value="35604000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1920" height="1057" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Favorites" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24973376" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24973376" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" />
@@ -307,7 +322,7 @@
       <window_info anchor="bottom" id="Terminal" />
       <window_info anchor="bottom" id="Event Log" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info active="true" anchor="bottom" id="Find" order="1" visible="true" weight="0.32908705" />
+      <window_info anchor="bottom" id="Find" order="1" visible="true" weight="0.32908705" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -335,7 +350,9 @@
     <MESSAGE value="smaller net baseline" />
     <MESSAGE value="regular smaller model" />
     <MESSAGE value="momentum smallest model" />
-    <option name="LAST_COMMIT_MESSAGE" value="momentum smallest model" />
+    <MESSAGE value="model that simply double the data of the points without any other operation" />
+    <MESSAGE value="model that simply add zeroes instead of other features" />
+    <option name="LAST_COMMIT_MESSAGE" value="model that simply add zeroes instead of other features" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file:///Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/tensorflow/contrib/eager/python/examples/revnet/blocks.py">
@@ -381,16 +398,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/train.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-511">
-          <caret line="106" column="42" selection-start-line="106" selection-start-column="37" selection-end-line="106" selection-end-column="42" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/evaluate.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="213">
@@ -403,17 +410,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/utils/tf_util.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="137">
-          <caret line="850" column="22" selection-start-line="850" selection-start-column="4" selection-end-line="850" selection-end-column="22" />
+        <state relative-caret-position="51">
+          <caret line="850" column="26" selection-start-line="850" selection-start-column="4" selection-end-line="850" selection-end-column="26" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/models/dgcnn.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="972">
-          <caret line="70" column="50" selection-start-line="70" selection-start-column="50" selection-end-line="70" selection-end-column="50" />
+        <state relative-caret-position="224">
+          <caret line="34" column="27" selection-start-line="34" selection-start-column="4" selection-end-line="34" selection-end-column="27" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/train.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="516">
+          <caret line="41" column="17" selection-start-line="41" selection-start-column="8" selection-end-line="41" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
           </folding>
         </state>
       </provider>
