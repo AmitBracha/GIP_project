@@ -820,6 +820,55 @@ def get_edge_feature(point_cloud, nn_idx, k=20):
     edge_feature = tf.concat([point_cloud_central, point_nei_minus_self], axis=-1)
     return edge_feature
 
+def get_random_edge_feature(point_cloud, layer_index, k=20):
+    """Construct edge feature for each point
+    Args:
+      point_cloud: (batch_size, num_points, 1, num_dims)
+      nn_idx: (batch_size, num_points, k)
+      k: int
+
+    Returns:
+      edge features: (batch_size, num_points, k, num_dims)
+    """
+    og_batch_size = point_cloud.get_shape().as_list()[0]
+    point_cloud = tf.squeeze(point_cloud)
+    if og_batch_size == 1:
+        point_cloud = tf.expand_dims(point_cloud, 0)
+
+    point_cloud_central = point_cloud
+
+
+    point_cloud_central = tf.expand_dims(point_cloud_central, axis=-2)
+    point_cloud_central = tf.tile(point_cloud_central, [1, 1, k, 1])
+
+    point_cloud_central_shape =point_cloud_central.get_shape().as_list()
+    n = point_cloud_central_shape[1] * point_cloud_central_shape[2] * point_cloud_central_shape[3]
+
+    random_feature = tf.multiply(tf.math.sqrt(2/tf.math.pow(n,layer_index-1)), tf.random.normal(point_cloud_central.get_shape()))
+    edge_feature = tf.concat([point_cloud_central, random_feature], axis=-1)
+    return edge_feature
+
+def get_feature_double(point_cloud, k=20):
+    """Construct edge feature for each point
+        Args:
+          point_cloud: (batch_size, num_points, 1, num_dims)
+          k: int
+
+        Returns:
+          edge features: (batch_size, num_points, k, num_dims)
+        """
+    og_batch_size = point_cloud.get_shape().as_list()[0]
+    point_cloud = tf.squeeze(point_cloud)
+    if og_batch_size == 1:
+        point_cloud = tf.expand_dims(point_cloud, 0)
+
+    point_cloud_central = point_cloud
+
+    point_cloud_central = tf.expand_dims(point_cloud_central, axis=-2)
+    point_cloud_central = tf.tile(point_cloud_central, [1, 1, k, 1])
+
+    edge_feature = tf.concat([point_cloud_central, point_cloud_central], axis=-1)
+    return edge_feature
 
 def get_momentum_feature(point_cloud, k=20):
     """Construct edge feature for each point
