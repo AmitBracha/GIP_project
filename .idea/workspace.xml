@@ -4,6 +4,7 @@
     <list default="true" id="841cd442-d4af-4535-b9f1-6ef7c9066796" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/dgcnn.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/dgcnn.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/tf_util.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/tf_util.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -40,8 +41,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/utils/tf_util.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="850" column="26" selection-start-line="850" selection-start-column="4" selection-end-line="850" selection-end-column="26" />
+            <state relative-caret-position="-1874">
+              <caret line="814" column="25" selection-start-line="814" selection-start-column="4" selection-end-line="814" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -61,8 +62,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/models/dgcnn.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="184">
-              <caret line="35" column="42" selection-start-line="35" selection-start-column="42" selection-end-line="35" selection-end-column="42" />
+            <state relative-caret-position="327">
+              <caret line="70" column="56" selection-start-line="70" selection-start-column="27" selection-end-line="70" selection-end-column="56" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -116,8 +117,9 @@
       <find>end_points</find>
       <find>transform</find>
       <find>get_edge_feature</find>
-      <find>get_feature_double</find>
       <find>MODEL_FILE</find>
+      <find>get_feature_double</find>
+      <find>conv2d</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -134,15 +136,15 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/provider.py" />
-        <option value="$PROJECT_DIR$/utils/tf_util.py" />
         <option value="$PROJECT_DIR$/models/dgcnn.py" />
+        <option value="$PROJECT_DIR$/utils/tf_util.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="y" value="23" />
-    <option name="width" value="1920" />
-    <option name="height" value="1057" />
+    <option name="width" value="1440" />
+    <option name="height" value="877" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -202,7 +204,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1548935819161</updated>
-      <workItem from="1548935820865" duration="36518000" />
+      <workItem from="1548935820865" duration="39440000" />
     </task>
     <task id="LOCAL-00001" summary="a">
       <created>1549442001960</created>
@@ -309,18 +311,32 @@
       <option name="project" value="LOCAL" />
       <updated>1549971613811</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="add two layers model">
+      <created>1549991786100</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1549991786100</updated>
+    </task>
+    <task id="LOCAL-00017" summary="add one layer model">
+      <created>1549992161905</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1549992161905</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="36518000" />
+    <option name="totallyTimeSpent" value="39440000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1920" height="1057" extended-state="6" />
+    <frame x="0" y="23" width="1440" height="877" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Favorites" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24973376" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.33547926" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" />
@@ -329,7 +345,7 @@
       <window_info anchor="bottom" id="Terminal" />
       <window_info anchor="bottom" id="Event Log" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" visible="true" weight="0.32908705" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.40682414" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -360,16 +376,11 @@
     <MESSAGE value="model that simply double the data of the points without any other operation" />
     <MESSAGE value="model that simply add zeroes instead of other features" />
     <MESSAGE value="model that uses all the second momentum at the last layer" />
-    <option name="LAST_COMMIT_MESSAGE" value="model that uses all the second momentum at the last layer" />
+    <MESSAGE value="add two layers model" />
+    <MESSAGE value="add one layer model" />
+    <option name="LAST_COMMIT_MESSAGE" value="add one layer model" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file:///Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/tensorflow/contrib/eager/python/examples/revnet/blocks.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1628">
-          <caret line="421" column="9" selection-start-line="421" selection-start-column="9" selection-end-line="421" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/utils/data_prep_util.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -416,13 +427,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utils/tf_util.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="850" column="26" selection-start-line="850" selection-start-column="4" selection-end-line="850" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/train.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-632">
@@ -433,10 +437,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file:///Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/tensorflow/contrib/eager/python/examples/revnet/blocks.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="421" column="9" selection-start-line="421" selection-start-column="9" selection-end-line="421" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/tf_util.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1874">
+          <caret line="814" column="25" selection-start-line="814" selection-start-column="4" selection-end-line="814" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/models/dgcnn.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="35" column="42" selection-start-line="35" selection-start-column="42" selection-end-line="35" selection-end-column="42" />
+        <state relative-caret-position="327">
+          <caret line="70" column="56" selection-start-line="70" selection-start-column="27" selection-end-line="70" selection-end-column="56" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
           </folding>
