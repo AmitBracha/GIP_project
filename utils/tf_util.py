@@ -968,14 +968,25 @@ def get_edge_feature_and_momentum(point_cloud, nn_idx, k=20):
     point_cloud_neighbors = tf.gather(point_cloud_flat, nn_idx + idx_)
 
     point_cloud_central = tf.expand_dims(point_cloud_central, axis=-2)
+
     rolled_point_cloud = point_cloud_central
     tmp_point_momentum = tf.multiply(point_cloud_central, rolled_point_cloud)
-    point_cloud_momentum = tmp_point_momentum
     rolled_point_cloud = tf.roll(rolled_point_cloud, shift=1, axis=-1)
+    tmp_point_momentum = tf.concat([tmp_point_momentum, tf.multiply(point_cloud_central, rolled_point_cloud)], axis=-1)
+    rolled_point_cloud = tf.roll(rolled_point_cloud, shift=1, axis=-1)
+    tmp_point_momentum = tf.concat([tmp_point_momentum, tf.multiply(point_cloud_central, rolled_point_cloud)], axis=-1)
+    rolled_point_cloud = tf.roll(rolled_point_cloud, shift=1, axis=-1)
+    point_cloud_momentum = tmp_point_momentum
     for i in range(k - 1):
         tmp_point_momentum = tf.multiply(point_cloud_central, rolled_point_cloud)
-        point_cloud_momentum = tf.concat([point_cloud_momentum, tmp_point_momentum], axis=-2)
         rolled_point_cloud = tf.roll(rolled_point_cloud, shift=1, axis=-1)
+        tmp_point_momentum = tf.concat([tmp_point_momentum, tf.multiply(point_cloud_central, rolled_point_cloud)],
+                                       axis=-1)
+        rolled_point_cloud = tf.roll(rolled_point_cloud, shift=1, axis=-1)
+        tmp_point_momentum = tf.concat([tmp_point_momentum, tf.multiply(point_cloud_central, rolled_point_cloud)],
+                                       axis=-1)
+        rolled_point_cloud = tf.roll(rolled_point_cloud, shift=1, axis=-1)
+        point_cloud_momentum = tf.concat([point_cloud_momentum, tmp_point_momentum], axis=-2)
 
     point_cloud_central = tf.tile(point_cloud_central, [1, 1, k, 1])
     momentum_feature = tf.concat(
