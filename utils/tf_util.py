@@ -1040,6 +1040,7 @@ def get_tensor_second_momentum(tensor):
     :return: Tensor type that contain all the input tensor second's momentum
     """
     second_momentum = tf.multiply(tensor, tensor)
+    second_momentum = tf.concat([tensor,second_momentum],axis=-1)
     tensor_shape = second_momentum.get_shape()
     feature_per_point = tensor_shape[-1].value
     rolled_tensor = tensor
