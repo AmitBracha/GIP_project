@@ -994,7 +994,7 @@ def get_edge_feature_and_momentum(point_cloud, nn_idx, k=20):
     return momentum_feature
 
 
-def get_edge_feature_fc_momentum(point_cloud, nn_idx, is_training, bn_decay, k=20):
+def get_edge_feature_fc_momentum(point_cloud, nn_idx, is_training, bn_decay,scope, k=20):
     """Construct edge feature for each point
     Args:
       point_cloud: (batch_size, num_points, 1, num_dims)
@@ -1026,7 +1026,7 @@ def get_edge_feature_fc_momentum(point_cloud, nn_idx, is_training, bn_decay, k=2
     point_cloud_fc_second_momentum = conv2d(point_cloud_central_second_momentum, 128, [1, 1],
                          padding='VALID', stride=[1, 1],
                          bn=True, is_training=is_training,
-                         scope='dgcnn3', bn_decay=bn_decay)
+                         scope=scope, bn_decay=bn_decay)
     point_cloud_central = tf.concat([point_cloud_central,point_cloud_fc_second_momentum],axis=-1)
     point_cloud_central = tf.tile(point_cloud_central, [1, 1, k, 1])
     momentum_feature = tf.concat(
