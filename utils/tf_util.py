@@ -992,3 +992,58 @@ def get_edge_feature_and_momentum(point_cloud, nn_idx, k=20):
     momentum_feature = tf.concat(
         [point_cloud_central, point_cloud_momentum, point_cloud_neighbors - point_cloud_central], axis=-1)
     return momentum_feature
+
+
+def get_edge_feature_fc_momentum(point_cloud, nn_idx, is_training, bn_decay, k=20):
+    """Construct edge feature for each point
+    Args:
+      point_cloud: (batch_size, num_points, 1, num_dims)
+      nn_idx: (batch_size, num_points, k)
+      k: int
+    Returns:
+      edge features: (batch_size, num_points, k, num_dims)
+    """
+    og_batch_size = point_cloud.get_shape().as_list()[0]
+    point_cloud = tf.squeeze(point_cloud)
+    if og_batch_size == 1:
+        point_cloud = tf.expand_dims(point_cloud, 0)
+
+    point_cloud_central = point_cloud
+
+    point_cloud_shape = point_cloud.get_shape()
+    batch_size = point_cloud_shape[0].value
+    num_points = point_cloud_shape[1].value
+    num_dims = point_cloud_shape[2].value
+
+    idx_ = tf.range(batch_size) * num_points
+    idx_ = tf.reshape(idx_, [batch_size, 1, 1])
+
+    point_cloud_flat = tf.reshape(point_cloud, [-1, num_dims])
+    point_cloud_neighbors = tf.gather(point_cloud_flat, nn_idx + idx_)
+
+    point_cloud_central = tf.expand_dims(point_cloud_central, axis=-2)
+    point_cloud_central_second_momentum = get_tensor_second_momentum(point_cloud_central)
+    point_cloud_fc_second_momentum = conv2d(point_cloud_central_second_momentum, 128, [1, 1],
+                         padding='VALID', stride=[1, 1],
+                         bn=True, is_training=is_training,
+                         scope='dgcnn3', bn_decay=bn_decay)
+    point_cloud_central = tf.concat([point_cloud_central,point_cloud_fc_second_momentum],axis=-1)
+    point_cloud_central = tf.tile(point_cloud_central, [1, 1, k, 1])
+    momentum_feature = tf.concat(
+        [point_cloud_central, point_cloud_neighbors - point_cloud_central], axis=-1)
+    return momentum_feature
+
+
+def get_tensor_second_momentum(tensor):
+    """
+    :param tensor: Tensor
+    :return: Tensor type that contain all the input tensor second's momentum
+    """
+    second_momentum = tf.multiply(tensor, tensor)
+    tensor_shape = second_momentum.get_shape()
+    feature_per_point = tensor_shape[-1].value
+    rolled_tensor = tensor
+    for i in range(feature_per_point):
+        rolled_tensor = tf.roll(rolled_tensor, shift=1, axis=-1)
+        second_momentum = tf.concat([second_momentum, tf.multiply(tensor, rolled_tensor)], axis=-1)
+    return second_momentum
