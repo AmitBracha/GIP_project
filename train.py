@@ -19,6 +19,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--gpu', type=int, default=0, help='GPU to use [default: GPU 0]')
 parser.add_argument('--model', default='dgcnn', help='Model name: dgcnn')
 parser.add_argument('--log_dir', default='log', help='Log dir [default: log]')
+parser.add_argument('--save_dir', default='save', help='Log dir [default: log]')
 parser.add_argument('--num_point', type=int, default=1024, help='Point Number [256/512/1024/2048] [default: 1024]')
 parser.add_argument('--max_epoch', type=int, default=250, help='Epoch to run [default: 250]')
 parser.add_argument('--batch_size', type=int, default=32, help='Batch Size during training [default: 32]')
@@ -42,6 +43,8 @@ DECAY_RATE = FLAGS.decay_rate
 MODEL = importlib.import_module(FLAGS.model)  # import network module
 MODEL_FILE = os.path.join(BASE_DIR, 'models', FLAGS.model + '.py')
 LOG_DIR = FLAGS.log_dir
+SAVE_DIR = FLAGS.save_dir
+if not os.path.exists(SAVE_DIR): os.mkdir(SAVE_DIR)
 if not os.path.exists(LOG_DIR): os.mkdir(LOG_DIR)
 os.system('cp %s %s' % (MODEL_FILE, LOG_DIR))  # bkp of model def
 os.system('cp train.py %s' % (LOG_DIR))  # bkp of train procedure
@@ -161,7 +164,8 @@ def train():
         for epoch in range(MAX_EPOCH):
             log_string('**** EPOCH %03d ****' % (epoch))
             sys.stdout.flush()
-
+            if epoch > 199:
+                saver.save(sess, os.path.join(SAVE_DIR, "model_epoch_"+str(epoch)+".ckpt"))
             train_one_epoch(sess, ops, train_writer)
             mean_acc_eval, accuracy_eval = eval_one_epoch(sess, ops, test_writer)
             if max_accuracy_eval < mean_acc_eval:
